@@ -23,6 +23,6 @@ private:
 	int m_horsepower;
 	std::string m_model_name;
 
-	static int m_Engine_ptr_count;
+	static int engine_ptr_count;
 };
 

@@ -8,8 +8,8 @@
 class Vehicle {
 public:
 	// pure virtual
-	virtual void makeSound() = 0;
-	virtual void sortByHorsePower(std::function< Engine(const Engine&, const Engine&)&>) = 0;
+ //	virtual void printVehicleSound( std::function <void()>& ) = 0;
+	virtual int calcTruePower() = 0;
 
 	// setter
 	void setManufactor(const std::string& m);
