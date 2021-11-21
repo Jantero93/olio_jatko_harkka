@@ -12,6 +12,7 @@ public:
 	// methods
 	void printVehicleSound() override;
 	float calcPowerIndex() override;
+	std::string getCSVFormat() override;
 
 private: 
 	int m_wheel_count = 2;

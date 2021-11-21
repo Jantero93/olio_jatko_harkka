@@ -1,20 +1,17 @@
 #include <iostream>
 #include "Engine.h"
 #include "Car.h"
+#include "App.h"
 
 int Engine::engine_ptr_count = 0;
+App* App::instance = 0;
 
 using std::cout; using std::endl;
 
 int main() {
+	App* app = App::getInstance();
 
-
-	Car car = Car("BMW", "520", 2011, 231, "E3&B");
-
-	Car car3 = Car(car);
-
-	cout << "auton voima " << std::to_string(car3.calcPowerIndex()) << endl;
-
+	app->start();
 
 	system("pause");
 	return EXIT_SUCCESS;

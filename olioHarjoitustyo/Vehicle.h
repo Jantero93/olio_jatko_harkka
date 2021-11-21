@@ -10,6 +10,7 @@ public:
 	// interface
  	virtual void printVehicleSound() = 0;
 	virtual float calcPowerIndex() = 0;
+	virtual std::string getCSVFormat() = 0;
 
 	// destroyer
 	~Vehicle();

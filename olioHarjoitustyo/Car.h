@@ -1,6 +1,7 @@
 #pragma once
 #include "Vehicle.h"
 #include "Engine.h"
+#include <string>
 
 class Car final : public Vehicle
 {
@@ -14,6 +15,7 @@ public:
 	~Car();
 
 	// methods
+	std::string getCSVFormat() override;
 	void printVehicleSound() override;
 	float calcPowerIndex() override;
 
