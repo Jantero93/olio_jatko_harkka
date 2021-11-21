@@ -10,7 +10,7 @@ public:
 	~Motorcycle();
 
 	// methods
-	float calcPowerIndex() override;
+	float getPowerIndex() override;
 	std::string getCSVFormat() override;
 	void printVehicleSound() override;
 

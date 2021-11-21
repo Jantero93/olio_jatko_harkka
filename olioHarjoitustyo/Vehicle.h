@@ -8,7 +8,7 @@
 class Vehicle {
 public:
 	// interface
-	virtual float calcPowerIndex() = 0;
+	virtual float getPowerIndex() = 0;
 	virtual std::string getCSVFormat() = 0;
 	virtual void printVehicleSound() = 0;
 

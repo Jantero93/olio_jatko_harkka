@@ -44,7 +44,7 @@ void Car::printVehicleSound()
 	std::cout << "CAR GOES BRMMM" << std::endl;
 }
 
-float Car::calcPowerIndex()
+float Car::getPowerIndex()
 {
 	if (!m_ptr_engine) {
 		std::cout << "No engine in car!" << std::endl;

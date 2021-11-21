@@ -21,6 +21,7 @@ private:
 	void addVehicle(const std::string& vehicle_type);
 	void loadData();
 	void printMainMenu();
+	void printPowerIndexes();
 	void saveData();
 	void sortByPower();
 

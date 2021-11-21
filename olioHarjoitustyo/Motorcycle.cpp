@@ -27,7 +27,7 @@ void Motorcycle::printVehicleSound()
 	std::cout << "BIKE GOES MMMMMMFIIIUHH..." << std::endl;
 }
 
-float Motorcycle::calcPowerIndex()
+float Motorcycle::getPowerIndex()
 {
 	if (!m_ptr_engine) {
 		std::cout << "No engine in car!" << std::endl;

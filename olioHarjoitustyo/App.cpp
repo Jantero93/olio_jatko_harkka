@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <fstream>
 #include <functional>
+#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <memory>
@@ -35,6 +36,7 @@ void App::start()
 		case 6: this->saveData(); break;
 		case 7: this->sortByPower(); break;
 		case 8: continue_app = false; break;
+		case 9: this->printPowerIndexes(); break;
 		case 99: this->debug(); break;
 		default: continue;
 		}
@@ -54,8 +56,27 @@ void App::printMainMenu()
 	cout << "4. Remove motorcycle" << endl;
 	cout << "5. Print all vehicles over 100 horsepower" << endl;
 	cout << "6. Save to file" << endl;
-	cout << "7. Sort vehicles by horsepower" << endl;
+	cout << "7. Sort vehicles by horsepower (descending)" << endl;
 	cout << "8. Close app" << endl;
+	cout << "9. Print all vehicles powerindex over 100 hp" << endl;
+}
+
+void App::printPowerIndexes()
+{	
+	cout << endl;
+	cout << "Manufactor Model Horsepower PowerIndex" << endl << endl;
+
+	auto print_power_indexes = [](unique_ptr<Vehicle>& vehicle) {
+		if (vehicle->getEngine()->getHorsePower() < 100) {
+			cout << vehicle->getManufactor() << " "
+				<< vehicle->getModelName() << " "
+				<< vehicle->getEngine()->getHorsePower() << " "
+				<< std::fixed << std::setprecision(2)
+				<< vehicle->getPowerIndex() << endl;
+		}
+	}; 
+
+	for_each(m_vehicle_data.begin(), m_vehicle_data.end(), print_power_indexes);
 }
 
 void App::addVehicle(const string& vehicle_type)
