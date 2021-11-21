@@ -7,9 +7,12 @@
 
 class Vehicle {
 public:
-	// pure virtual
- //	virtual void printVehicleSound( std::function <void()>& ) = 0;
-	virtual int calcTruePower() = 0;
+	// interface
+ 	virtual void printVehicleSound() = 0;
+	virtual float calcPowerIndex() = 0;
+
+	// destroyer
+	~Vehicle();
 
 	// setter
 	void setManufactor(const std::string& m);
@@ -22,6 +25,13 @@ public:
 	std::string getModelName() const;
 
 protected:
+	// constructors
+	Vehicle();
+	Vehicle(const std::string& manufactor, const std::string& model, const int year, const int engine_power, const std::string& engine_model);
+	Vehicle(const std::string& manufactor, const std::string& model, const int year);
+	Vehicle(Vehicle& v) = delete;
+
+	// class variables
 	std::string m_manufactor;
 	std::string m_model_name;
 	std::shared_ptr<Engine> m_ptr_engine;

@@ -1,15 +1,23 @@
 #pragma once
 #include "Vehicle.h"
-class Car : public Vehicle
+#include "Engine.h"
+
+class Car final : public Vehicle
 {
 public:
-	Car();
+
+	// constructors
+	Car() = delete;
+	Car(const std::string& manufactor, const std::string& model_name, const int year, const int engine_power, const std::string& engine_model);
+	Car(const Car& car);
+
 	~Car();
 
-	int calcTruePower() override;
-
+	// methods
+	void printVehicleSound() override;
+	float calcPowerIndex() override;
 
 private:
-	int m_wheel_count;
+	int m_wheel_count = 4;
 };
 
