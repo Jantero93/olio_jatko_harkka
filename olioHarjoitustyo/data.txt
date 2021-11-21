@@ -1,0 +1,2 @@
+car;bwm;325;2010;210;E63FAAAAAAAAAa
+motorcycle;Honda;CBR;2003;130;BFG2100

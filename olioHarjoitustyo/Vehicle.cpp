@@ -1,10 +1,10 @@
 #include "Vehicle.h"
 
 Vehicle::Vehicle() :
-	m_manufactor{""},
-	m_model_name{""},
-	m_year{-1},
-	m_ptr_engine{nullptr}
+	m_manufactor{ "" },
+	m_model_name{ "" },
+	m_year{ -1 },
+	m_ptr_engine{ nullptr }
 {
 	std::cout << "Vehicle oletusrakentaja" << std::endl;
 }

@@ -1,13 +1,19 @@
-#include "App.h"
+#include <fstream>
 #include <iostream>
+#include <memory>
+#include <stdexcept>
 #include <string>
-using std::cout; using std::endl; using std::string; using std::cin; using std::getline;
+#include "App.h"
+#include "Car.h"
+#include "Motorcycle.h"
+using std::cout; using std::endl; using std::string; using std::cin;
+using std::getline; using std::make_unique; using std::unique_ptr;
 
 App* App::getInstance()
 {
 	if (!instance)
 		instance = new App();
-	
+
 	return instance;
 }
 
@@ -31,6 +37,40 @@ void App::start()
 
 }
 
+#include "Car.h"
+void App::loadData()
+{
+	std::fstream file("data.txt", std::ios::in);
+	string manufactor, model, vehicle_type, engine_model, year, horsepower;
+
+	if (file.is_open()) {
+
+		while (file.peek() != EOF) {
+			getline(file, vehicle_type, ';');
+			getline(file, manufactor, ';');
+			getline(file, model, ';');
+			getline(file, year, ';');
+			getline(file, horsepower, ';');
+			getline(file, engine_model);
+
+			if (vehicle_type == "car") {
+				vehicle_data.push_back(
+					make_unique<Car>(manufactor, model, std::stoi(year), std::stoi(horsepower), engine_model)
+				);
+			}
+			else {
+				vehicle_data.push_back(
+					make_unique<Motorcycle>(manufactor, model, std::stoi(year), std::stoi(horsepower), engine_model)
+				);
+			}
+		}
+
+	}
+	else {
+		throw std::runtime_error("Could not open file");
+	}
+}
+
 void App::printMainMenu()
 {
 	cout << "Vehicle handler 9000" << endl;
@@ -43,9 +83,21 @@ void App::printMainMenu()
 	cout << "7. Close app" << endl;
 }
 
+
 void App::saveData()
 {
-	cout << "save data btt" << endl;   
+	Car car("bwm", "325", 2010, 210, "E63FAAAAAAAAAa");
+	Motorcycle moto("Honda", "CBR", 2003, 130, "BFG2100");
+
+	std::ofstream file("data.txt");
+	if (file.is_open()) {
+		file << car.getCSVFormat() << '\n';
+		file << moto.getCSVFormat() << '\n';
+	}
+	else {
+		throw std::runtime_error("Could not open file");
+	}
+
 }
 
 App::App()
@@ -61,4 +113,5 @@ App::~App()
 
 void App::debug()
 {
+	this->loadData();
 }

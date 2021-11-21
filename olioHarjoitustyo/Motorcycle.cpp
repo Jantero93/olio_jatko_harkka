@@ -1,5 +1,5 @@
-#include "Motorcycle.h"
 #include <sstream>
+#include "Motorcycle.h"
 
 Motorcycle::Motorcycle(const std::string & manufactor, const std::string model_name, const int year, const int engine_power, const std::string & engine_model) :
 	Vehicle(manufactor, model_name, year, engine_power, engine_model)
@@ -39,12 +39,12 @@ float Motorcycle::calcPowerIndex()
 
 std::string Motorcycle::getCSVFormat()
 {
-	int engine_power = m_ptr_engine 
-		? m_ptr_engine->getHorsePower() 
+	int engine_power = m_ptr_engine
+		? m_ptr_engine->getHorsePower()
 		: -1;
-	
-	std::string engine_model = m_ptr_engine 
-		? m_ptr_engine->getModelName() 
+
+	std::string engine_model = m_ptr_engine
+		? m_ptr_engine->getModelName()
 		: "";
 
 	std::stringstream ss;

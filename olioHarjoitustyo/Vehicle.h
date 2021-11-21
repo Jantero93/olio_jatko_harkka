@@ -1,16 +1,16 @@
 #pragma once
+#include <functional>
 #include <iostream>
+#include <memory>
 #include <string>
 #include "Engine.h"
-#include <memory>
-#include <functional>
 
 class Vehicle {
 public:
 	// interface
- 	virtual void printVehicleSound() = 0;
 	virtual float calcPowerIndex() = 0;
 	virtual std::string getCSVFormat() = 0;
+	virtual void printVehicleSound() = 0;
 
 	// destroyer
 	~Vehicle();
@@ -36,5 +36,5 @@ protected:
 	std::string m_manufactor;
 	std::string m_model_name;
 	std::shared_ptr<Engine> m_ptr_engine;
-	int m_year;	
+	int m_year;
 };

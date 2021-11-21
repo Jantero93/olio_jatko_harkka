@@ -13,12 +13,12 @@ public:
 	static App* getInstance();
 	void start();
 
-
-private: 
+private:
 	static App* instance;
 	std::vector<std::unique_ptr<Vehicle>> vehicle_data;
 
 	// methods
+	void loadData();
 	void printMainMenu();
 	void saveData();
 	void debug();
