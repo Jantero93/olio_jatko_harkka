@@ -1,3 +1,3 @@
 car;Audi;A3;2012;120;AAVS
-motorcycle;Yamaha;YZF-R;2014;15;UUFT
 car;Honda;Accord;1990;70;BCBF1
+motorcycle;Yamaha;YZF-R;2014;15;UUFT

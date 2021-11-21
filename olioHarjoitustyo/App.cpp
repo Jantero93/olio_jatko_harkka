@@ -1,4 +1,6 @@
+#include <algorithm>
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <limits>
 #include <memory>
@@ -31,7 +33,8 @@ void App::start()
 		case 1: this->addVehicle("car"); break;
 		case 3: this->addVehicle("motorcycle"); break;
 		case 6: this->saveData(); break;
-		case 7: continue_app = false; break;
+		case 7: this->sortByPower(); break;
+		case 8: continue_app = false; break;
 		case 99: this->debug(); break;
 		default: continue;
 		}
@@ -51,7 +54,8 @@ void App::printMainMenu()
 	cout << "4. Remove motorcycle" << endl;
 	cout << "5. Print all vehicles over 100 horsepower" << endl;
 	cout << "6. Save to file" << endl;
-	cout << "7. Close app" << endl;
+	cout << "7. Sort vehicles by horsepower" << endl;
+	cout << "8. Close app" << endl;
 }
 
 void App::addVehicle(const string& vehicle_type)
@@ -133,6 +137,16 @@ void App::saveData()
 		throw std::runtime_error("Could not open file");
 	}
 
+}
+
+void App::sortByPower()
+{
+	// descending order
+	auto sort_power_descending = [](unique_ptr<Vehicle>& a, const unique_ptr<Vehicle>& b) {
+		return a->getEngine()->getHorsePower() > b->getEngine()->getHorsePower();
+	};
+
+	std::sort(m_vehicle_data.begin(), m_vehicle_data.end(), sort_power_descending);
 }
 
 App::App()

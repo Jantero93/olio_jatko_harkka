@@ -16,14 +16,16 @@ public:
 	~Vehicle();
 
 	// setter
+	void setEngine(const Engine& engine);
 	void setManufactor(const std::string& m);
 	void setModelName(const std::string& m);
 	void setYear(const int y);
 
 	// getter
-	int getYear() const;
+	std::shared_ptr<Engine> getEngine() const;
 	std::string getManufactor() const;
 	std::string getModelName() const;
+	int getYear() const;
 
 protected:
 	// constructors

@@ -22,6 +22,8 @@ private:
 	void loadData();
 	void printMainMenu();
 	void saveData();
+	void sortByPower();
+
 	void debug();
 
 	// construcor

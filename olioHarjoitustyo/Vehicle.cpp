@@ -32,6 +32,12 @@ Vehicle::~Vehicle()
 	std::cout << "Engine purkaja" << std::endl;
 }
 
+void Vehicle::setEngine(const Engine& engine)
+{
+	m_ptr_engine->setHorsepower(engine.getHorsePower());
+	m_ptr_engine->setModelName(engine.getModelName());
+}
+
 void Vehicle::setManufactor(const std::string & m)
 {
 	m_manufactor = m;
@@ -50,6 +56,11 @@ void Vehicle::setYear(const int y)
 int Vehicle::getYear() const
 {
 	return m_year;
+}
+
+std::shared_ptr<Engine> Vehicle::getEngine() const
+{
+	return m_ptr_engine;
 }
 
 std::string Vehicle::getManufactor() const
