@@ -123,12 +123,9 @@ void App::loadData()
 
 void App::saveData()
 {
-	Car car("bwm", "325", 2010, 210, "E63FAAAAAAAAAa");
-	Motorcycle moto("Honda", "CBR", 2003, 130, "BFG2100");
-
 	std::ofstream file("data.txt");
 	if (file.is_open()) {
-		for (auto& vehicle : m_vehicle_data) {
+		for (const auto& vehicle : m_vehicle_data) {
 			file << vehicle->getCSVFormat() << '\n';
 		}
 	}
