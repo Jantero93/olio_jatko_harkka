@@ -32,7 +32,7 @@ float Car::calcPowerIndex()
 {
 	if (!m_ptr_engine) {
 		std::cout << "No engine in car!" << std::endl;
-		return -1;
+		return -1.0f;
 	}
 	
 	return m_ptr_engine->getHorsePower() / static_cast<float>(m_wheel_count);
