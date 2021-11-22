@@ -2,6 +2,8 @@
 #include "Engine.h"
 using std::cout; using std::endl;
 
+int Engine::engine_ptr_count = 0;
+
 Engine::Engine(const int horsepower, const std::string& model_name) :
 	m_horsepower{ horsepower },
 	m_model_name{ model_name }

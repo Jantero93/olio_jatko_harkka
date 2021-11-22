@@ -13,6 +13,8 @@
 using std::cout; using std::endl; using std::string; using std::cin;
 using std::getline; using std::make_unique; using std::unique_ptr;
 
+App* App::instance = 0;
+
 App* App::getInstance()
 {
 	if (!instance)
@@ -44,7 +46,7 @@ void App::start()
 
 }
 
-void App::printMainMenu()
+void App::printMainMenu() const
 {
 	cout << endl;
 	cout << "============================" << endl;
@@ -61,20 +63,20 @@ void App::printMainMenu()
 	cout << "9. Print all vehicles powerindex over 100 hp" << endl;
 }
 
-void App::printPowerIndexes()
-{	
+void App::printPowerIndexes() const
+{
 	cout << endl;
 	cout << "Manufactor Model Horsepower PowerIndex" << endl << endl;
 
-	auto print_power_indexes = [](unique_ptr<Vehicle>& vehicle) {
-		if (vehicle->getEngine()->getHorsePower() < 100) {
+	auto print_power_indexes = [](const unique_ptr<Vehicle>& vehicle) {
+		if (vehicle->getEngine()->getHorsePower() > 100) {
 			cout << vehicle->getManufactor() << " "
 				<< vehicle->getModelName() << " "
 				<< vehicle->getEngine()->getHorsePower() << " "
 				<< std::fixed << std::setprecision(2)
 				<< vehicle->getPowerIndex() << endl;
 		}
-	}; 
+	};
 
 	for_each(m_vehicle_data.begin(), m_vehicle_data.end(), print_power_indexes);
 }
@@ -163,7 +165,7 @@ void App::saveData()
 void App::sortByPower()
 {
 	// descending order
-	auto sort_power_descending = [](unique_ptr<Vehicle>& a, const unique_ptr<Vehicle>& b) {
+	auto sort_power_descending = [](const unique_ptr<Vehicle>& a, const unique_ptr<Vehicle>& b) {
 		return a->getEngine()->getHorsePower() > b->getEngine()->getHorsePower();
 	};
 

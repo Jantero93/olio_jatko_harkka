@@ -2,6 +2,9 @@
 #include <memory>
 #include <vector>
 #include "Vehicle.h"
+
+
+
 class App
 {
 public:
@@ -20,8 +23,8 @@ private:
 	// methods
 	void addVehicle(const std::string& vehicle_type);
 	void loadData();
-	void printMainMenu();
-	void printPowerIndexes();
+	void printMainMenu() const;
+	void printPowerIndexes() const;
 	void saveData();
 	void sortByPower();
 

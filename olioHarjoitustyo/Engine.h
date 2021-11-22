@@ -18,11 +18,12 @@ public:
 	// getter
 	int getHorsePower() const;
 	std::string getModelName() const;
+	
+	static int engine_ptr_count;
 
 private:
 	int m_horsepower;
 	std::string m_model_name;
 
-	static int engine_ptr_count;
 };
 
