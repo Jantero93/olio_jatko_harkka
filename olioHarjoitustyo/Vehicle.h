@@ -1,8 +1,4 @@
 #pragma once
-#include <functional>
-#include <iostream>
-#include <memory>
-#include <string>
 #include "Engine.h"
 
 class Vehicle {

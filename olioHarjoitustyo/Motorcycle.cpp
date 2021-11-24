@@ -1,14 +1,15 @@
+#include <iostream>
 #include <sstream>
 #include "Motorcycle.h"
 
 Motorcycle::Motorcycle(const std::string & manufactor, const std::string model_name, const int year, const int engine_power, const std::string & engine_model) :
-	Vehicle(manufactor, model_name, year, engine_power, engine_model)
+	Vehicle{ manufactor, model_name, year, engine_power, engine_model }
 {
 	std::cout << "Motorcycle parametri rakentaja kaikilla arvoilla" << std::endl;
 }
 
 Motorcycle::Motorcycle(const Motorcycle & motorcycle) :
-	Vehicle(motorcycle.m_manufactor, motorcycle.m_model_name, motorcycle.m_year)
+	Vehicle{ motorcycle.m_manufactor, motorcycle.m_model_name, motorcycle.m_year }
 {
 	if (motorcycle.m_ptr_engine) {
 		m_ptr_engine = motorcycle.m_ptr_engine;

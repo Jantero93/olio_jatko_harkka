@@ -1,12 +1,13 @@
 #include <algorithm>
-#include <fstream>
 #include <functional>
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <limits>
 #include <memory>
 #include <stdexcept>
 #include <string>
+
 #include "App.h"
 #include "Car.h"
 #include "Motorcycle.h"
@@ -17,8 +18,7 @@ App* App::instance = 0;
 
 App* App::getInstance()
 {
-	if (!instance)
-		instance = new App();
+	if (!instance) instance = new App();
 
 	return instance;
 }
@@ -34,6 +34,7 @@ void App::start()
 
 		switch (input) {
 		case 1: this->addVehicle("car"); break;
+		case 2: this->removeVehicleByModel(); break;
 		case 3: this->addVehicle("motorcycle"); break;
 		case 6: this->saveData(); break;
 		case 7: this->sortByPower(); break;
@@ -53,23 +54,25 @@ void App::printMainMenu() const
 	cout << endl;
 	cout << "Vehicle handler 9000" << endl;
 	cout << "1. Add car" << endl;
-	cout << "2. Remove car" << endl;
+	cout << "2. Remove vehicle" << endl;
 	cout << "3. Add motorcycle" << endl;
 	cout << "4. Remove motorcycle" << endl;
-	cout << "5. Print all vehicles over 100 horsepower" << endl;
 	cout << "6. Save to file" << endl;
 	cout << "7. Sort vehicles by horsepower (descending)" << endl;
 	cout << "8. Close app" << endl;
-	cout << "9. Print all vehicles powerindex over 100 hp" << endl;
+	cout << "9. Print vehicles powerindex over x horsepoewr" << endl;
 }
 
 void App::printPowerIndexes() const
 {
+	int input_horsepower;
+	cout << "Vehicles minimun horsepower which powerindex is printed?(integer)";
+	cin >> input_horsepower;
 	cout << endl;
 	cout << "Manufactor Model Horsepower PowerIndex" << endl << endl;
 
-	auto print_power_indexes = [](const unique_ptr<Vehicle>& vehicle) {
-		if (vehicle->getEngine()->getHorsePower() > 100) {
+	auto print_power_indexes = [&input_horsepower](const unique_ptr<Vehicle>& vehicle) {
+		if (vehicle->getEngine()->getHorsePower() >= input_horsepower) {
 			cout << vehicle->getManufactor() << " "
 				<< vehicle->getModelName() << " "
 				<< vehicle->getEngine()->getHorsePower() << " "
@@ -144,6 +147,24 @@ void App::loadData()
 	else {
 		throw std::runtime_error("Could not open file");
 	}
+}
+
+void App::removeVehicleByModel()
+{
+	cin.clear();
+	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	
+	string model;
+	cout << "Model to remove?";
+	getline(cin, model);
+
+	auto iterator = std::remove_if(m_vehicle_data.begin(), m_vehicle_data.end(),
+		[&model](const unique_ptr<Vehicle>& vehicle) { return vehicle->getModelName() == model; }
+	);
+
+	m_vehicle_data.erase(iterator, m_vehicle_data.end());
+
+	cout << endl;
 }
 
 

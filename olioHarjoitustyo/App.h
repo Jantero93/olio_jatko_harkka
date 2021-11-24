@@ -1,16 +1,13 @@
 #pragma once
-#include <memory>
 #include <vector>
 #include "Vehicle.h"
-
-
 
 class App
 {
 public:
 	// removed constructors
 	App(const App&) = delete;
-	App &operator=(const App&) = delete;
+	App& operator=(const App&) = delete;
 
 public:
 	static App* getInstance();
@@ -23,6 +20,7 @@ private:
 	// methods
 	void addVehicle(const std::string& vehicle_type);
 	void loadData();
+	void removeVehicleByModel();
 	void printMainMenu() const;
 	void printPowerIndexes() const;
 	void saveData();
