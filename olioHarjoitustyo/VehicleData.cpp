@@ -110,6 +110,18 @@ void VehicleData::loadData()
 	}
 }
 
+void VehicleData::printAll() const
+{
+	auto print_all = [](const shared_ptr<Vehicle>& vehicle) {
+		cout << vehicle->getManufactor() << " "
+			<< vehicle->getModelName() << " "
+			<< vehicle->getEngine()->getHorsePower() << endl;
+	};
+
+	cout << "Manufactor Model Horsepower" << endl;
+	for_each(m_vehicle_data.begin(), m_vehicle_data.end(), print_all);
+}
+
 void VehicleData::printPowerIndexes() const
 {
 	int input_horsepower;

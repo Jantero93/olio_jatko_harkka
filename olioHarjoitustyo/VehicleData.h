@@ -21,6 +21,7 @@ public:
 	// methods
 	void addVehicle(const std::string& vehicle_type);
 	void loadData();
+	void printAll() const;
 	void printPowerIndexes() const;
 	void removeVehicleByModel();
 	void saveData();

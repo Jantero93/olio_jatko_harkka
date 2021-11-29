@@ -19,10 +19,11 @@ void App::start()
 		case 1: VehicleData::getInstance()->addVehicle("car"); break;
 		case 2: VehicleData::getInstance()->removeVehicleByModel(); break;
 		case 3: VehicleData::getInstance()->addVehicle("motorcycle"); break;
+		case 5: VehicleData::getInstance()->printAll(); break;
 		case 6: VehicleData::getInstance()->saveData(); break;
 		case 7: VehicleData::getInstance()->sortByPower(); break;
-		case 8: continue_app = false; break;
-		case 9: VehicleData::getInstance()->printPowerIndexes(); break;
+		case 8: VehicleData::getInstance()->printPowerIndexes(); break;
+		case 9: continue_app = false; break;
 		default: continue;
 		}
 	} while (continue_app);
@@ -38,16 +39,16 @@ void App::printMainMenu() const
 	cout << "1. Add car" << endl;
 	cout << "2. Remove vehicle" << endl;
 	cout << "3. Add motorcycle" << endl;
-	cout << "4. Remove motorcycle" << endl;
+	cout << "5. Print all vehicles" << endl;
 	cout << "6. Save to file" << endl;
 	cout << "7. Sort vehicles by horsepower (descending)" << endl;
-	cout << "8. Close app" << endl;
-	cout << "9. Print vehicles powerindex over x horsepoewr" << endl;
+	cout << "8. Print vehicles powerindex over x horsepoewr" << endl;
+	cout << "9. Close app" << endl;
 }
 
 App::App()
 {
-	cout << "App oletus rakentaja" << endl;
+	cout << "App oletus rakentaja, asetaa observer lambdat" << endl;
 
 	auto lambdaAddVehicleListener = [](const std::string& model) {
 		cout << "Observer: Added " << model << "!" << endl;

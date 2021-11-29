@@ -1,1 +1,3 @@
 car;BMW;320;2012;200;MPM_D
+car;Audi;A4;2012;150;BB01
+motorcycle;Honda;CBR;2002;110;MOTOR_A
