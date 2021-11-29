@@ -18,13 +18,7 @@ private:
 	std::vector<std::unique_ptr<Vehicle>> m_vehicle_data;
 
 	// methods
-	void addVehicle(const std::string& vehicle_type);
-	void loadData();
-	void removeVehicleByModel();
 	void printMainMenu() const;
-	void printPowerIndexes() const;
-	void saveData();
-	void sortByPower();
 
 	void debug();
 
