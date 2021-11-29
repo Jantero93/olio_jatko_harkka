@@ -1,10 +1,10 @@
 #include <iostream>
+#include <string>
 
 #include "App.h"
 #include "VehicleData.h"
 
-using std::cout; using std::endl; using std::cin; using std::getline; 
-
+using std::cin; using std::cout; using std::endl;
 
 void App::start()
 {
@@ -48,6 +48,18 @@ void App::printMainMenu() const
 App::App()
 {
 	cout << "App oletus rakentaja" << endl;
+
+	auto lambdaAddVehicleListener = [](const std::string& model) {
+		cout << "Observer: Added " << model << "!" << endl;
+	};
+
+	VehicleData::getInstance()->registerLambdaAddListener(lambdaAddVehicleListener);
+
+	auto lambdaRemoveVehicleListener = [](const std::string& model) {
+		cout << "Observer: Removed " << model << "!" << endl;
+	};
+
+	VehicleData::getInstance()->registerLamdaRemoveListener(lambdaRemoveVehicleListener);
 }
 
 

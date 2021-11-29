@@ -34,6 +34,16 @@ std::shared_ptr<VehicleData> VehicleData::getInstance()
 	return instance;
 }
 
+void VehicleData::registerLambdaAddListener(std::function<void(const std::string&)> listener)
+{
+	m_vehicleAddedObsrvers.push_back(listener);
+}
+
+void VehicleData::registerLamdaRemoveListener(std::function<void(const std::string&)> listener)
+{
+	m_vehicleRemovedObsrvers.push_back(listener);
+}
+
 void VehicleData::addVehicle(const string& vehicle_type) {
 	cin.clear();
 	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -62,7 +72,9 @@ void VehicleData::addVehicle(const string& vehicle_type) {
 		);
 	}
 
-	cout << "Vehicle added to database!" << endl;
+	for (auto& observer : m_vehicleAddedObsrvers) {
+		observer(model);
+	}
 }
 
 void VehicleData::loadData()
@@ -134,7 +146,9 @@ void VehicleData::removeVehicleByModel()
 
 	m_vehicle_data.erase(iterator, m_vehicle_data.end());
 
-	cout << endl;
+	for (auto& observer : m_vehicleRemovedObsrvers) {
+		observer(model);
+	}
 }
 
 void VehicleData::saveData()
