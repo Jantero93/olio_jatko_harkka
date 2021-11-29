@@ -1,29 +1,10 @@
-#include <algorithm>
-#include <functional>
-#include <fstream>
-#include <iomanip>
 #include <iostream>
-#include <limits>
-#include <memory>
-#include <stdexcept>
-#include <string>
 
 #include "App.h"
-#include "Car.h"
-#include "Motorcycle.h"
 #include "VehicleData.h"
 
-using std::cout; using std::endl; using std::string; using std::cin;
-using std::getline; using std::make_unique; using std::unique_ptr;
+using std::cout; using std::endl; using std::cin; using std::getline; 
 
-App* App::instance = 0;
-
-App* App::getInstance()
-{
-	if (!instance) instance = new App();
-
-	return instance;
-}
 
 void App::start()
 {
@@ -42,7 +23,6 @@ void App::start()
 		case 7: VehicleData::getInstance()->sortByPower(); break;
 		case 8: continue_app = false; break;
 		case 9: VehicleData::getInstance()->printPowerIndexes(); break;
-		case 99: this->debug(); break;
 		default: continue;
 		}
 	} while (continue_app);
@@ -74,9 +54,4 @@ App::App()
 App::~App()
 {
 	cout << "App purkaja" << endl;
-}
-
-void App::debug()
-{
-
 }

@@ -2,7 +2,7 @@
 #include "App.h"
 
 int main() {
-	App* app = App::getInstance();
+	App* app = new App();
 	app->start();
 
 	return EXIT_SUCCESS;
